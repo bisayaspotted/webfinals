@@ -22,7 +22,7 @@ const characterSprites = {
     defeat:    { src: "gold-defeat.png", frames: 1, w: 38, h: 38, speed: 10 },
     victory:   { src: "gold-victory.png", frames: 6, w: 38, h: 38, speed: 6 }
   },
-  chicken: {
+ /* chicken: {
     idle:      { src: "chicken-idle.png", frames: 5, w: 50, h: 50, speed: 13 },
     walk:      { src: "chicken-walk.png", frames: 7, w: 50, h: 50, speed: 4 },
     jump:      { src: "chicken-jump.png", frames: 4, w: 50, h: 50, speed: 6 },
@@ -35,7 +35,21 @@ const characterSprites = {
     dash:      { src: "chicken-dash.png", frames: 3, w: 50, h: 50, speed: 4 },
     defeat:    { src: "chicken-defeat.png", frames: 1, w: 38, h: 38, speed: 10 },
     victory:   { src: "chicken-victory.png", frames: 6, w: 38, h: 38, speed: 6 }
-  }
+  },*/
+  berry: {
+    idle:      { src: "v-idle.png", frames: 5, w: 50, h: 50, speed: 13 },
+    walk:      { src: "v-walk.png", frames: 7, w: 50, h: 50, speed: 4 },
+    jump:      { src: "v-jump.png", frames: 4, w: 50, h: 50, speed: 6 },
+    fall:      { src: "v-fall.png", frames: 3, w: 50, h: 50, speed: 15 },
+    attack:    { src: "v-attack.png", frames: 3, w: 38, h: 38, speed: 2 },
+    attack_air:{ src: "v-attack-air.png", frames: 2, w: 38, h: 38, speed: 2 },
+    block:     { src: "v-block.png", frames: 2, w: 50, h: 50, speed: 11 },
+    hit:       { src: "v-hit.png", frames: 3, w: 50, h: 50, speed: 8 },
+    dizzy:     { src: "v-dizzy.png", frames: 3, w: 38, h: 38, speed: 8 },
+    dash:      { src: "v-dash.png", frames: 3, w: 50, h: 50, speed: 4 },
+    defeat:    { src: "v-defeat.png", frames: 1, w: 38, h: 38, speed: 10 },
+    victory:   { src: "v-victory.png", frames: 6, w: 38, h: 38, speed: 6 }
+  },
 };
 
 const spritesheetCache = {};
@@ -50,9 +64,9 @@ for (const charId in characterSprites) {
   }
 }
 
-// --- Player State Initialization (P1: gold, P2: chicken) ---
+// --- Player state when battle starts ---
 const players = [
-  {
+  {//rubber
     x: WIDTH/3, y: GROUND-PLAYER_SIZE, vx: 0, vy: 0, w: PLAYER_SIZE, h: PLAYER_SIZE,
     color: "#42a5f5", facing: 1, hp: PLAYER_HP, jumps: 0, dash: 0,
     dashCooldown: 0, canAttack: true, attackTimer: 0, attackBox: null, onGround: false,
@@ -60,14 +74,23 @@ const players = [
     charId: "gold", animState: "idle", animFrame: 0, animTimer: 0, justHit: 0,
     block: BLOCK_MAX, blocking: false, dizzy: 0, blockGlowTimer: 0, blockWasFull: false
   },
-  {
+   {//vergil
+    x: 2*WIDTH/3, y: GROUND-PLAYER_SIZE, vx: 0, vy: 0, w: PLAYER_SIZE, h: PLAYER_SIZE,
+    color: "#6cf", facing: -1, hp: PLAYER_HP, jumps: 0, dash: 0,
+    dashCooldown: 0, canAttack: true, attackTimer: 0, attackBox: null, onGround: false,
+    downDropTimer: 0, jumpHeld: false, alive: true, id: 1, name: "P2",
+    charId: "berry", animState: "idle", animFrame: 0, animTimer: 0, justHit: 0,
+    block: BLOCK_MAX, blocking: false, dizzy: 0, blockGlowTimer: 0, blockWasFull: false,
+    berryGauge: 0 // add Berry's special gauge property
+  },
+  /*{//saging
     x: 2*WIDTH/3, y: GROUND-PLAYER_SIZE, vx: 0, vy: 0, w: PLAYER_SIZE, h: PLAYER_SIZE,
     color: "#ef5350", facing: -1, hp: PLAYER_HP, jumps: 0, dash: 0,
     dashCooldown: 0, canAttack: true, attackTimer: 0, attackBox: null, onGround: false,
-    downDropTimer: 0, jumpHeld: false, alive: true, id: 1, name: "P2",
+    downDropTimer: 0, jumpHeld: false, alive: true, id: 1, name: "saging",
     charId: "chicken", animState: "idle", animFrame: 0, animTimer: 0, justHit: 0,
     block: BLOCK_MAX, blocking: false, dizzy: 0, blockGlowTimer: 0, blockWasFull: false
-  }
+  }*/
 ];
 let winner = null;
 
