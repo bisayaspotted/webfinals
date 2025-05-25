@@ -12,6 +12,11 @@ function handleDashAttack() {
           }
         }
         if (isBlocking) {
+          // Bvergil 3 points
+          // If the blocking player is named berry/vergil and gauge is not full this will apply
+          if (opp.name === "Berry" && typeof opp.berryGauge === "number" && opp.berryGauge < 3) {
+            opp.berryGauge += 1;
+          }
           p.dizzy = DIZZY_FRAMES;
           p.vx = opp.facing * BLOCK_PUSHBACK_X;
           p.vy = BLOCK_PUSHBACK_Y;

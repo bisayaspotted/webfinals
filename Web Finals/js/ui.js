@@ -26,4 +26,22 @@ function updateUI() {
       bar.style.background = "linear-gradient(90deg, #ffeb3b 30%, #ffa726 100%)";
     }
   }
+
+
+  // --- Berry Gauge UI ---
+  // If either player is Berry, show their gauge as 3 orbs (empty/filled)
+  for (let i = 0; i < 2; ++i) {
+    if (players[i].name === "Berry") {
+      let gauge = players[i].berryGauge || 0;
+      let gaugeContainer = document.getElementById(i === 0 ? "p1berrygauge" : "p2berrygauge");
+      if (gaugeContainer) {
+        gaugeContainer.innerHTML = "";
+        for (let j = 0; j < 3; ++j) {
+          let orb = document.createElement("span");
+          orb.className = "berry-gauge-orb" + (j < gauge ? " filled" : "");
+          gaugeContainer.appendChild(orb);
+        }
+      }
+    }
+  }
 }
