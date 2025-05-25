@@ -25,3 +25,22 @@ body { background: #292d3e; margin: 0; }
   background: linear-gradient(90deg, #ffeb3b 30%, #ffa726 100%);
   transition: width 0.1s;
 }
+.berry-gauge-ui {
+  display: flex;
+  gap: 5px;
+  margin-top: 4px;
+  justify-content: center;
+}
+.berry-gauge-orb {
+  width: 18px;
+  height: 18px;
+  background: #222;
+  border-radius: 50%;
+  border: 2px solid #b3e5fc;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.berry-gauge-orb.filled {
+  background: #82eefd;
+  border-color: #29b6f6;
+}
