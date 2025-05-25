@@ -92,3 +92,34 @@ function updatePlayer(p, pid) {
   }
   if (p.y < 0) { p.y = 0; p.vy = 0; }
 }
+
+// --- Add Berry Character Initialization ---
+// You should have a player initialization function somewhere, for example:
+function createPlayer(name, color, opts = {}) {
+  return {
+    name,
+    color,
+    hp: PLAYER_HP,
+    x: opts.x || 0,
+    y: opts.y || 0,
+    w: PLAYER_W,
+    h: PLAYER_H,
+    vx: 0,
+    vy: 0,
+    facing: 1,
+    alive: true,
+    block: BLOCK_MAX,
+    blocking: false,
+    dizzy: 0,
+    dash: 0,
+    dashCooldown: 0,
+    jumps: 0,
+    jumpHeld: false,
+    onGround: false,
+    // Berry's special gauge
+    berryGauge: opts.berryGauge !== undefined ? opts.berryGauge : 0,
+    // ... add any other custom properties needed ...
+  };
+}
+
+// When creating Berry, set berryGauge: 0 and add a way to identify Berry (e.g., name === "Berry")
